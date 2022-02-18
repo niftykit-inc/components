@@ -10,10 +10,24 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/components/components.esm.js",
+  "homepage": "https://github.com/niftykit-inc/components",
   "repository": {
     "type": "git",
     "url": "git@github.com:niftykit-inc/components.git"
   },
+  "bugs": {
+    "url": "https://github.com/niftykit-inc/components/issues"
+  },
+  "keywords": [
+    "NiftyKit",
+    "widget",
+    "Web Components",
+    "web3",
+    "ethers",
+    "web3modal",
+    "dropkit.js"
+  ],
+  "author": "NiftyKit <hello@niftykit.com>",
   "files": [
     "dist/",
     "loader/"
