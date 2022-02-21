@@ -12,17 +12,20 @@ There are a few strategies we recommend for using this component:
 
 #### Script tag
 
-- Put a script tag similar to this `<script type='module' src='https://unpkg.com/@niftykit/components/dist/components/components.esm.js'></script>` in the head of your index.html
-- Then you can use the element anywhere in your template, JSX, html etc
+- Add a script tag in your `<head>` section similar to this:
+
+ ```html
+  <script type='module' src='https://unpkg.com/@niftykit/components/dist/components/components.esm.js'></script>
+ ````
 
 #### Node Modules
 
 - Run `npm install @niftykit/components --save`
 - Add an import to the npm packages `import @niftykit/components;`
-- Then you can use the element anywhere in your template, JSX, html etc
 
 #### Example
 
 ```html
+<!-- You can use the element anywhere in your template, JSX, HTML, etc -->
 <nk-dropkit apikey="YOUR-SDK-KEY"></nk-dropkit>
 ```
