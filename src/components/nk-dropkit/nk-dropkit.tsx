@@ -39,7 +39,7 @@ export class NkDropkit {
       }
 
       return (
-        <div class={{ 'msg error': this.msg.error, 'msg success': !this.msg.error }}>
+        <div part="info" class={{ 'msg error': this.msg.error, 'msg success': !this.msg.error }}>
           {this.msg.message}
           <button onClick={() => (this.msg = null)} type="button" class="close" data-dismiss="msg" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -50,8 +50,8 @@ export class NkDropkit {
 
     const ConnectWalletBtn = () => {
       return (
-        <div class="connect-wallet">
-          <button class="btn" disabled={this.loading} onClick={() => this.initDrop()}>
+        <div part="wallet-btn-container" class="connect-wallet">
+          <button part="wallet-btn" class="btn" disabled={this.loading} onClick={() => this.initDrop()}>
             {this.loading ? 'Loading...' : 'Connect Wallet'}
           </button>
         </div>
@@ -60,8 +60,8 @@ export class NkDropkit {
 
     const MintBtn = () => {
       return (
-        <div class="mint">
-          <select class="btn" disabled={this.loading} onInput={event => this.handleSelect(event)} id="mint-btn">
+        <div part="mint-btn-container" class="mint">
+          <select part="mint-btn" class="btn" disabled={this.loading} onInput={event => this.handleSelect(event)} id="mint-btn">
             <option value="-1" disabled selected>
               Mint
             </option>
