@@ -2,6 +2,7 @@ import { Component, Prop, State, Host, h } from '@stencil/core';
 import { Env } from '@stencil/core';
 import Dropkit from 'dropkit.js';
 import WalletLink from 'walletlink';
+import WalletConnectProvider from '@walletconnect/web3-provider';
 
 @Component({
   tag: 'nk-dropkit',
@@ -115,6 +116,12 @@ export class NkDropkit {
           package: WalletLink,
           options: {
             appName: 'Dropkit',
+            infuraId,
+          },
+        },
+        walletconnect: {
+          package: WalletConnectProvider,
+          options: {
             infuraId,
           },
         },
