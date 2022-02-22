@@ -14,6 +14,17 @@
 | `multiple` | `multiple` | Flag to enable multiple wallet support | `boolean` | `true`  |
 
 
+## Shadow Parts
+
+| Part                     | Description |
+| ------------------------ | ----------- |
+| `"info"`                 |             |
+| `"mint-btn"`             |             |
+| `"mint-btn-container"`   |             |
+| `"wallet-btn"`           |             |
+| `"wallet-btn-container"` |             |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
