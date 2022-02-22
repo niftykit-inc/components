@@ -1,5 +1,8 @@
 import { Config } from '@stencil/core';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
+import replace from '@rollup/plugin-replace';
+import rollupCommonjs from '@rollup/plugin-commonjs';
+
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -10,9 +13,20 @@ export const config: Config = {
     infuraId: process.env.INFURA_ID,
   },
   rollupPlugins: {
+    before: [
+      replace({
+        'process.env.NODE_DEBUG': null,
+        'process.env.WALLETLINK_URL': null,
+        'process.env.WALLETLINK_VERSION': null,
+      }),
+      rollupCommonjs({
+        transformMixedEsModules: true,
+        sourceMap: true,
+      }),
+    ],
     after: [
       // Plugins injected after commonjs()
-      nodePolyfills()
+      nodePolyfills(),
     ]
   },
   outputTargets: [
