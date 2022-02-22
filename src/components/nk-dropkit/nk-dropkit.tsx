@@ -123,6 +123,10 @@ export class NkDropkit {
           package: WalletConnectProvider,
           options: {
             infuraId,
+            rpc: {
+              80001: 'https://matic-mumbai.chainstacklabs.com',
+              137: 'https://polygon-rpc.com'
+            },
           },
         },
       };
