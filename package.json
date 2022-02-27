@@ -43,6 +43,9 @@
     "generate": "stencil generate"
   },
   "dependencies": {
+    "@material/button": "^13.0.0",
+    "@material/ripple": "^13.0.0",
+    "@material/select": "^13.0.0",
     "@stencil/core": "^2.13.0",
     "@walletconnect/web3-provider": "^1.7.1",
     "dropkit.js": "0.0.12",
@@ -51,6 +54,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-replace": "^3.1.0",
+    "@stencil/sass": "^1.5.2",
     "@types/jest": "^27.0.3",
     "@types/node": "^17.0.18",
     "dotenv": "^16.0.0",

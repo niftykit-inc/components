@@ -2,6 +2,7 @@ import { Config } from '@stencil/core';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
 import replace from '@rollup/plugin-replace';
 import rollupCommonjs from '@rollup/plugin-commonjs';
+import { sass } from '@stencil/sass';
 
 import dotenv from 'dotenv';
 
@@ -29,6 +30,9 @@ export const config: Config = {
       nodePolyfills(),
     ]
   },
+  plugins: [
+    sass({ includePaths: ['./node_modules'] })
+  ],
   outputTargets: [
     {
       type: 'dist',
