@@ -13,7 +13,7 @@ export class NkDropkit {
   /**
    * Drop SDK Key
    */
-  @Prop() apikey: string = '';
+  @Prop() apikey!: string;
 
   /**
    * Flag to enable testnet mode
@@ -31,7 +31,7 @@ export class NkDropkit {
   @State() msg: Msg = null;
 
   private drop: Dropkit | null = null;
-  private tokens: number[] = [];
+  private maxPerMint: number = 0;
 
   render() {
     const NkMsg = () => {
@@ -39,40 +39,29 @@ export class NkDropkit {
         return null;
       }
 
-      return (
-        <div part="info" class={{ 'msg error': this.msg.error, 'msg success': !this.msg.error }}>
-          {this.msg.message}
-          <button onClick={() => (this.msg = null)} type="button" class="close" data-dismiss="msg" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-      );
+      const Msg = this.msg.error ? 'nk-error-message' : 'nk-success-message';
+
+      return <Msg onClosed={() => (this.msg = null)}>{this.msg.text}</Msg>;
     };
 
     const ConnectWalletBtn = () => {
       return (
-        <div part="wallet-btn-container" class="connect-wallet">
-          <button part="wallet-btn" class="btn" disabled={this.loading} onClick={() => this.initDrop()}>
-            {this.loading ? 'Loading...' : 'Connect Wallet'}
-          </button>
-        </div>
+        <nk-wallet-button exportparts="wallet-btn-container wallet-btn" disabled={this.loading} loading={this.loading} onClick={() => this.initDrop()}>
+          Connect Wallet
+        </nk-wallet-button>
       );
     };
 
     const MintBtn = () => {
       return (
-        <div part="mint-btn-container" class="mint">
-          <select part="mint-btn" class="btn" disabled={this.loading} onInput={event => this.handleSelect(event)} id="mint-btn">
-            <option value="-1" disabled selected>
-              Mint
-            </option>
-            {this.tokens.map(token => (
-              <option value={token} selected={this.selectValue === token}>
-                {this.loading ? 'Loading...' : token}
-              </option>
-            ))}
-          </select>
-        </div>
+        <nk-mint-button
+          exportparts="mint-btn-container mint-btn"
+          selectedValue={this.selectValue}
+          maxPerMint={this.maxPerMint}
+          disabled={this.loading}
+          loading={this.loading}
+          onTokensChanged={event => this.handleSelect(event)}
+        ></nk-mint-button>
       );
     };
 
@@ -89,10 +78,10 @@ export class NkDropkit {
     this.msg = null;
     this.loading = true;
     try {
-      this.selectValue = Math.max(event.target.value, 1);
+      this.selectValue = Math.max(event.detail, 1);
       await this.mint(this.selectValue);
     } catch (e) {
-      this.msg = { error: true, message: e.message };
+      this.msg = { error: true, text: e.message };
     } finally {
       this.loading = false;
     }
@@ -103,7 +92,7 @@ export class NkDropkit {
       throw new Error('Dropkit is not initialized');
     }
     await this.drop.mint(quantity);
-    this.msg = { error: false, message: `Tokens Minted: ${quantity}` };
+    this.msg = { error: false, text: `Tokens Minted: ${quantity}` };
   }
 
   private async initDrop(): Promise<void> {
@@ -125,7 +114,7 @@ export class NkDropkit {
             infuraId,
             rpc: {
               80001: 'https://matic-mumbai.chainstacklabs.com',
-              137: 'https://polygon-rpc.com'
+              137: 'https://polygon-rpc.com',
             },
           },
         },
@@ -133,25 +122,17 @@ export class NkDropkit {
     }
     try {
       this.drop = await Dropkit.create(this.apikey, this.dev, providers);
-      await this.setTokens();
+      this.maxPerMint = await this.drop.maxPerMint();
       this.dropStarted = true;
     } catch (e) {
-      this.msg = { error: true, message: e.message };
+      this.msg = { error: true, text: e.message };
     } finally {
       this.loading = false;
-    }
-  }
-
-  private async setTokens(): Promise<void> {
-    const maxPerMint = await this.drop.maxPerMint();
-    // Fills the tokens array with the total supply
-    for (let i = 0; i < maxPerMint; i++) {
-      this.tokens = [...this.tokens, i + 1];
     }
   }
 }
 
 type Msg = {
   error: boolean;
-  message: string;
+  text: string;
 };
