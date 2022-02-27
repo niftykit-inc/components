@@ -41,7 +41,7 @@ export class NkDropkit {
 
       const Msg = this.msg.error ? 'nk-error-message' : 'nk-success-message';
 
-      return <Msg onClosed={() => (this.msg = null)}>{this.msg.text}</Msg>;
+      return <Msg class="info" exportparts="info" onClosed={() => (this.msg = null)}>{this.msg.text}</Msg>;
     };
 
     const ConnectWalletBtn = () => {
