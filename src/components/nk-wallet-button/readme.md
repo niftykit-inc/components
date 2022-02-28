@@ -27,9 +27,14 @@
 
  - [nk-dropkit](../nk-dropkit)
 
+### Depends on
+
+- [nk-loading](../nk-loading)
+
 ### Graph
 ```mermaid
 graph TD;
+  nk-wallet-button --> nk-loading
   nk-dropkit --> nk-wallet-button
   style nk-wallet-button fill:#f9f,stroke:#333,stroke-width:4px
 ```

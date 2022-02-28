@@ -26,6 +26,7 @@
 graph TD;
   nk-dropkit --> nk-wallet-button
   nk-dropkit --> nk-mint-button
+  nk-wallet-button --> nk-loading
   style nk-dropkit fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
