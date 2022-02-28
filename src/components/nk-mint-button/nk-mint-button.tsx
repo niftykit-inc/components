@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, h, Prop } from '@stencil/core';
+import { Component, Event, EventEmitter, h, Prop, State } from '@stencil/core';
 import { MDCSelect } from '@material/select';
 
 @Component({
@@ -17,6 +17,7 @@ export class NkMintButton {
 
   values: number[] = [];
   container!: HTMLDivElement;
+  selectedText: HTMLSpanElement;
   select: MDCSelect | null = null;
 
   render() {
@@ -28,7 +29,7 @@ export class NkMintButton {
         <div part="mint-btn" class="mdc-select__anchor" role="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="mint-selected-text">
           <span class="mdc-select__ripple"></span>
           <span class="mdc-select__selected-text-container">
-            <span id="mint-selected-text" class="mdc-select__selected-text"></span>
+            <span id="mint-selected-text" class="mdc-select__selected-text" ref={el => (this.selectedText = el as HTMLSpanElement)}></span>
           </span>
           <span class="mdc-select__dropdown-icon">
             <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5" focusable="false">
@@ -40,14 +41,10 @@ export class NkMintButton {
 
         <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
           <ul class="mdc-deprecated-list" role="listbox" aria-label="Quantity Picker listbox">
-            <li class={`${this.optionClasses(-1)} mdc-deprecated-list-item--disabled`} aria-selected={this.selectedValue === -1} data-value="-1" role="option">
-              <span class="mdc-deprecated-list-item__ripple"></span>
-              <span class="mdc-deprecated-list-item__text">{this.placeholder}</span>
-            </li>
             {this.values.map(value => (
               <li class={this.optionClasses(value)} aria-selected={value === this.selectedValue} data-value={value} role="option">
                 <span class="mdc-deprecated-list-item__ripple"></span>
-                <span class="mdc-deprecated-list-item__text">{this.loading ? 'Loading...' : value}</span>
+                <span class="mdc-deprecated-list-item__text">{value}</span>
               </li>
             ))}
           </ul>
@@ -56,12 +53,29 @@ export class NkMintButton {
     );
   }
 
-  componentDidLoad() {
-    this.select = new MDCSelect(this.container);
+  componentDidUpdate() {
+    if (this.select) {
+      this.select.value = this.selectedValue.toString();
+      this.setSelectedText();
+    }
+  }
 
+  componentDidLoad() {
+    this.setSelectedText();
+
+    this.select = new MDCSelect(this.container);
     this.select.listen('MDCSelect:change', () => {
-      this.tokensChanged.emit(Number(this.select.value));
+      const value = Number(this.select.value);
+      this.tokensChanged.emit(value);
+      this.selectedText.textContent = 'Loading...';
     });
+  }
+
+  private setSelectedText(): void {
+    setTimeout(() => {
+      const result = this.selectedValue < 0 ? this.placeholder : this.selectedValue.toString();
+      this.selectedText.textContent = this.loading ? 'Loading...' : result;
+    }, 10);
   }
 
   private setValues(): void {
