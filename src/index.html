@@ -9,23 +9,76 @@
   <script type="module" src="/build/components.esm.js"></script>
   <script nomodule src="/build/components.js"></script>
   <style>
-    nk-dropkit::part(wallet-btn) {
-      background-color: red;
+    h2,
+    h3 {
+      text-align: center;
     }
 
-    nk-dropkit::part(mint-btn) {
-      background-color: yellow;
-      width: 300px;
-      color: black;
+    body {
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #444;
+      background: #f5f5f5;
+    }
+
+    .widgets {
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 0 10px;
+    }
+
+    .widget {
+      flex-direction: column;
+      flex-basis: calc(50% - 20px);
+    }
+
+    .widget>* {
+      margin-bottom: 10px;
     }
 
   </style>
 </head>
 
 <body>
-  <nk-dropkit id="testnet" apikey="pu16DaU0xXCaHnH5Vj3G" dev=true multiple=true>Mumbai TestNet</nk-dropkit>
+  <h2>Main Component</h2>
+  <div>
+    <div class="dropkit">
+      <h3>Dropkit</h3>
+      <nk-dropkit apikey="EAEWCN1AJlu4rDh8XNSQ" dev="true"></nk-dropkit>
+    </div>
+  </div>
 
-  <nk-dropkit id="mainnet" apikey="AHN5MP6tExXVkvNlRaCR">Mainnet</nk-dropkit>
+  <h2>Widgets</h2>
+  <div class="widgets">
+    <div class="widget connect-wallet">
+      <h3>Connect Wallet Button</h3>
+      <nk-wallet-button>Connect Wallet</nk-wallet-button>
+      <nk-wallet-button disabled="true">Connect Wallet</nk-wallet-button>
+      <nk-wallet-button disabled="true" loading="true">Connect Wallet</nk-wallet-button>
+    </div>
+
+    <div class="widget mint-button">
+      <h3>Mint Button</h3>
+      <nk-mint-button max-per-mint="10"></nk-mint-button>
+      <nk-mint-button selected-value="2" disabled="true" max-per-mint="10"></nk-mint-button>
+      <nk-mint-button selected-value="2" disabled="true" loading="true" max-per-mint="10"></nk-mint-button>
+    </div>
+
+    <div class="widget message">
+      <h3>Messages</h3>
+      <nk-error-message>Alert Content</nk-error-message>
+      <nk-success-message>Alert Content</nk-success-message>
+    </div>
+
+    <div class="widget loading">
+      <h3>Progress</h3>
+      <nk-loading></nk-loading>
+    </div>
+  </div>
 </body>
 
 </html>
