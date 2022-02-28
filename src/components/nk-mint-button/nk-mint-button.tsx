@@ -67,14 +67,13 @@ export class NkMintButton {
     this.select.listen('MDCSelect:change', () => {
       const value = Number(this.select.value);
       this.tokensChanged.emit(value);
-      this.selectedText.textContent = 'Loading...';
     });
   }
 
   private setSelectedText(): void {
     setTimeout(() => {
       const result = this.selectedValue < 0 ? this.placeholder : this.selectedValue.toString();
-      this.selectedText.textContent = this.loading ? 'Loading...' : result;
+      this.selectedText.innerHTML = this.loading ? '<nk-loading></nk-loading>' : result;
     }, 10);
   }
 

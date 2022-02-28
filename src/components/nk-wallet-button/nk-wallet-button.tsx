@@ -19,7 +19,7 @@ export class NkWalletButton {
         <button part="wallet-btn" disabled={this.disabled} ref={el => (this.button = el as HTMLButtonElement)} class="mdc-button mdc-button--raised">
           <span class="mdc-button__ripple"></span>
           <span class="mdc-button__touch"></span>
-          <span class="mdc-button__label">{this.loading ? 'Loading...' : <slot></slot>}</span>
+          <span class="mdc-button__label">{this.loading ? <nk-loading></nk-loading> : <slot></slot>}</span>
         </button>
       </div>
     );

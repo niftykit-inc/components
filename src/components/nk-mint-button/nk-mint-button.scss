@@ -32,14 +32,20 @@
   .mdc-floating-label,
   .mdc-select__selected-text {
     color: #fff !important;
+    text-align: center !important;
   }
 
   .mdc-select__dropdown-icon {
     fill: #fff !important;
+    justify-content: left !important;
   }
 
   .mdc-deprecated-list-item {
     font-weight: normal;
+  }
+
+  nk-loading {
+    margin-top: -17px;
   }
 }
 

@@ -1,0 +1,12 @@
+@use "@material/theme"with ($primary: rgba(0, 0, 0, 0.38),
+);
+@use "@material/circular-progress/mdc-circular-progress";
+
+:host {
+  display: block;
+}
+
+.mdc-circular-progress {
+  width: 24px;
+  height: 24px;
+}

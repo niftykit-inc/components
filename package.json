@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "@material/button": "^13.0.0",
+    "@material/circular-progress": "^13.0.0",
     "@material/ripple": "^13.0.0",
     "@material/select": "^13.0.0",
     "@stencil/core": "^2.13.0",
