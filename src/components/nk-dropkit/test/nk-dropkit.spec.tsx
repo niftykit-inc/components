@@ -10,11 +10,9 @@ describe('nk-dropkit', () => {
     expect(page.root).toEqualHtml(`
       <nk-dropkit>
         <mock:shadow-root>
-          <div class="connect-wallet" part="wallet-btn-container">
-            <button class="btn" part="wallet-btn">
-              Connect Wallet
-            </button>
-          </div>
+          <nk-wallet-button exportparts="wallet-btn-container wallet-btn">
+            Connect Wallet
+          </nk-wallet-button>
           <slot></slot>
         </mock:shadow-root>
       </nk-dropkit>
