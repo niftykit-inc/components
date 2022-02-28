@@ -46,7 +46,7 @@ export class NkDropkit {
 
     const ConnectWalletBtn = () => {
       return (
-        <nk-wallet-button exportparts="wallet-btn-container wallet-btn" disabled={this.loading} loading={this.loading} onClick={() => this.initDrop()}>
+        <nk-wallet-button exportparts="wallet-btn-container, wallet-btn" disabled={this.loading} loading={this.loading} onClick={() => this.initDrop()}>
           Connect Wallet
         </nk-wallet-button>
       );
@@ -55,7 +55,7 @@ export class NkDropkit {
     const MintBtn = () => {
       return (
         <nk-mint-button
-          exportparts="mint-btn-container mint-btn"
+          exportparts="mint-btn-container, mint-btn"
           selectedValue={this.selectValue}
           maxPerMint={this.maxPerMint}
           disabled={this.loading}
