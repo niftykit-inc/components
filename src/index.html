@@ -40,41 +40,27 @@
       margin-bottom: 10px;
     }
 
-    nk-dropkit::part(wallet-btn) {
-      background-color: PaleGreen;
-      color: black;
-      font-family: "Arial";
-      font-size: x-Large;
-      width: 300px;
-      height: 75px;
-
-    }
-
-    nk-dropkit::part(mint-btn) {
-      background-color: PaleGreen;
-      width: 300px;
-      height: 75px;
-      color: black;
-      font-size: x-Large;
-    }
-
-    nk-dropkit::part(info) {
-      background-color: blue;
-    }
-
   </style>
 </head>
 
 <body>
-  <h2>Main Component</h2>
+  <h2>Dropkit</h2>
   <div>
     <div class="dropkit">
-      <h3>Dropkit</h3>
+      <h3>Mumbai</h3>
+      <nk-dropkit apikey="pu16DaU0xXCaHnH5Vj3G" dev="true"></nk-dropkit>
+    </div>
+
+    <div class="dropkit">
+      <h3>Rinkeby</h3>
       <nk-dropkit apikey="EAEWCN1AJlu4rDh8XNSQ" dev="true"></nk-dropkit>
     </div>
-  </div>
 
-  <h2>Widgets</h2>
+    <p style="text-align: center;">
+      Edit it on <a href="https://codepen.io/jcurbelo/pen/NWwoPYe">Codepen</a>
+    </p>
+  </div>
+  <h2>Child Components</h2>
   <div class="widgets">
     <div class="widget connect-wallet">
       <h3>Connect Wallet Button</h3>
