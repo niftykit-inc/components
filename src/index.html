@@ -40,6 +40,33 @@
       margin-bottom: 10px;
     }
 
+    /* nk-dropkit::part(wallet-btn) {
+      color: black;
+      background-color: white;
+      border-color: black;
+      border: 2px solid;
+      box-shadow: none;
+    }
+
+    nk-dropkit::part(mint-btn) {
+      color: black;
+      background-color: white;
+      border-color: black;
+      border: 2px solid;
+      box-shadow: none;
+    }
+
+    nk-dropkit::part(mint-text) {
+      color: black;
+    }
+
+    nk-dropkit::part(mint-dropdown-icon) {
+      fill: black;
+    }
+
+    nk-dropkit::part(info) {
+    } */
+
   </style>
 </head>
 
@@ -48,12 +75,12 @@
   <div>
     <div class="dropkit">
       <h3>Mumbai</h3>
-      <nk-dropkit apikey="pu16DaU0xXCaHnH5Vj3G" dev="true"></nk-dropkit>
+      <nk-dropkit id="mumbai" apikey="pu16DaU0xXCaHnH5Vj3G" dev="true"></nk-dropkit>
     </div>
 
     <div class="dropkit">
       <h3>Rinkeby</h3>
-      <nk-dropkit apikey="EAEWCN1AJlu4rDh8XNSQ" dev="true"></nk-dropkit>
+      <nk-dropkit id="rinkeby" apikey="EAEWCN1AJlu4rDh8XNSQ" dev="true"></nk-dropkit>
     </div>
 
     <p style="text-align: center;">
@@ -87,6 +114,14 @@
       <nk-loading></nk-loading>
     </div>
   </div>
+  <script>
+    const drop = document.getElementById('rinkeby');
+    drop.addEventListener('walletConnected', event => {
+      console.log({
+        event
+      });
+    })
+  </script>
 </body>
 
 </html>
