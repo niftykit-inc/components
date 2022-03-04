@@ -14,9 +14,9 @@ describe('nk-mint-button', () => {
             <div aria-disabled="false" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="mint-selected-text" class="mdc-select__anchor" part="mint-btn" role="button" tabindex="0">
               <span class="mdc-select__ripple"></span>
               <span class="mdc-select__selected-text-container">
-                <span class="mdc-select__selected-text" id="mint-selected-text"></span>
+                <span class="mdc-select__selected-text" id="mint-selected-text" part="mint-text"></span>
               </span>
-              <span class="mdc-select__dropdown-icon">
+              <span class="mdc-select__dropdown-icon" part="mint-dropdown-icon">
                 <svg class="mdc-select__dropdown-icon-graphic" focusable="false" viewBox="7 10 10 5">
                   <polygon class="mdc-select__dropdown-icon-inactive" fill-rule="evenodd" points="7 10 12 15 17 10" stroke="none"></polygon>
                   <polygon class="mdc-select__dropdown-icon-active" fill-rule="evenodd" points="7 15 12 10 17 15" stroke="none"></polygon>

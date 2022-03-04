@@ -14,6 +14,13 @@
 | `multiple`            | `multiple` | Flag to enable multiple wallet support | `boolean` | `true`      |
 
 
+## Events
+
+| Event             | Description | Type                          |
+| ----------------- | ----------- | ----------------------------- |
+| `walletConnected` |             | `CustomEvent<DropCollection>` |
+
+
 ## Dependencies
 
 ### Depends on

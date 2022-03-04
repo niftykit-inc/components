@@ -29,6 +29,8 @@
 | ---------------------- | ----------- |
 | `"mint-btn"`           |             |
 | `"mint-btn-container"` |             |
+| `"mint-dropdown-icon"` |             |
+| `"mint-text"`          |             |
 
 
 ## Dependencies

@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DropCollection } from "./types/drop-collection.interface";
 export namespace Components {
     interface NkDropkit {
         /**
@@ -98,6 +99,7 @@ declare namespace LocalJSX {
           * Flag to enable multiple wallet support
          */
         "multiple"?: boolean;
+        "onWalletConnected"?: (event: CustomEvent<DropCollection>) => void;
     }
     interface NkErrorMessage {
         "onClosed"?: (event: CustomEvent<boolean>) => void;

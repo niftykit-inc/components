@@ -29,9 +29,9 @@ export class NkMintButton {
         <div part="mint-btn" class="mdc-select__anchor" role="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="mint-selected-text">
           <span class="mdc-select__ripple"></span>
           <span class="mdc-select__selected-text-container">
-            <span id="mint-selected-text" class="mdc-select__selected-text" ref={el => (this.selectedText = el as HTMLSpanElement)}></span>
+            <span part="mint-text" id="mint-selected-text" class="mdc-select__selected-text" ref={el => (this.selectedText = el as HTMLSpanElement)}></span>
           </span>
-          <span class="mdc-select__dropdown-icon">
+          <span part="mint-dropdown-icon" class="mdc-select__dropdown-icon">
             <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5" focusable="false">
               <polygon class="mdc-select__dropdown-icon-inactive" stroke="none" fill-rule="evenodd" points="7 10 12 15 17 10"></polygon>
               <polygon class="mdc-select__dropdown-icon-active" stroke="none" fill-rule="evenodd" points="7 15 12 10 17 15"></polygon>

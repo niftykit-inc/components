@@ -1,8 +1,9 @@
-import { Component, Prop, State, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, State, Host, h } from '@stencil/core';
 import { Env } from '@stencil/core';
 import Dropkit from 'dropkit.js';
 import WalletLink from 'walletlink';
 import WalletConnectProvider from '@walletconnect/web3-provider';
+import { DropCollection } from '../../types/drop-collection.interface';
 
 @Component({
   tag: 'nk-dropkit',
@@ -30,6 +31,8 @@ export class NkDropkit {
   @State() selectValue: number;
   @State() msg: Msg = null;
 
+  @Event() walletConnected: EventEmitter<DropCollection>;
+
   private drop: Dropkit | null = null;
   private maxPerMint: number = 0;
 
@@ -41,7 +44,11 @@ export class NkDropkit {
 
       const Msg = this.msg.error ? 'nk-error-message' : 'nk-success-message';
 
-      return <Msg class="info" exportparts="info" onClosed={() => (this.msg = null)}>{this.msg.text}</Msg>;
+      return (
+        <Msg class="info" exportparts="info" onClosed={() => (this.msg = null)}>
+          {this.msg.text}
+        </Msg>
+      );
     };
 
     const ConnectWalletBtn = () => {
@@ -55,7 +62,7 @@ export class NkDropkit {
     const MintBtn = () => {
       return (
         <nk-mint-button
-          exportparts="mint-btn-container, mint-btn"
+          exportparts="mint-btn-container, mint-btn, mint-text, mint-dropdown-icon"
           selectedValue={this.selectValue}
           maxPerMint={this.maxPerMint}
           disabled={this.loading}
@@ -123,6 +130,14 @@ export class NkDropkit {
     try {
       this.drop = await Dropkit.create(this.apikey, this.dev, providers);
       this.maxPerMint = await this.drop.maxPerMint();
+      const dropCollection: DropCollection = {
+        maxAmount: await this.drop.maxAmount(),
+        maxPerMint: await this.drop.maxPerMint(),
+        maxPerWallet: await this.drop.maxPerWallet(),
+        totalSupply: await this.drop.totalSupply(),
+        walletTokensCount: await this.drop.walletTokensCount(),
+      };
+      this.walletConnected.emit(dropCollection);
       this.dropStarted = true;
     } catch (e) {
       this.msg = { error: true, text: e.message };
