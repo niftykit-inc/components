@@ -46,6 +46,10 @@
       border-color: black;
       border: 2px solid;
       box-shadow: none;
+      font-size: large;
+      width: 300px;
+      height: 75px;
+      border-radius: 40px;
     }
 
     nk-dropkit::part(mint-btn) {
@@ -54,10 +58,16 @@
       border-color: black;
       border: 2px solid;
       box-shadow: none;
+      font-size: large;
+      width: 300px;
+      height: 75px;
+      max-height: none !important;
+      border-radius: 40px;
     }
 
     nk-dropkit::part(mint-text) {
       color: black;
+      font-size: large;
     }
 
     nk-dropkit::part(mint-dropdown-icon) {
@@ -65,7 +75,12 @@
     }
 
     nk-dropkit::part(info) {
+      font-size: large;
     } */
+
+    nk-supply::part(supply-text) {
+      font-size: large;
+    }
 
   </style>
 </head>
@@ -80,6 +95,7 @@
 
     <div class="dropkit">
       <h3>Rinkeby</h3>
+      <h3 id="supply"></h3>
       <nk-dropkit id="rinkeby" apikey="EAEWCN1AJlu4rDh8XNSQ" dev="true"></nk-dropkit>
     </div>
 
@@ -113,6 +129,22 @@
       <h3>Progress</h3>
       <nk-loading></nk-loading>
     </div>
+
+    <div class="widget supply">
+      <h3>Supply</h3>
+      <nk-supply apikey="EAEWCN1AJlu4rDh8XNSQ" dev="true">
+        <p>Rinkeby</p>
+      </nk-supply>
+      <nk-supply apikey="pu16DaU0xXCaHnH5Vj3G" dev="true">
+        <p> Mumbai </p>
+      </nk-supply>
+      <nk-supply apikey="AHN5MP6tExXVkvNlRaCR">
+        <p>Mainnet </p>
+      </nk-supply>
+      <nk-supply apikey="KSqylc30feNC2ZbssdvO">
+        <p> Polygon </p>
+      </nk-supply>
+    </div>
   </div>
   <script>
     const drop = document.getElementById('rinkeby');
@@ -120,7 +152,11 @@
       console.log({
         event
       });
+      const collection = event.detail;
+      const supply = document.getElementById('supply');
+      supply.innerHTML = `${collection.totalSupply}/${collection.maxAmount}`;
     })
+
   </script>
 </body>
 

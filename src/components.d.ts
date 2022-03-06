@@ -34,6 +34,16 @@ export namespace Components {
     }
     interface NkSuccessMessage {
     }
+    interface NkSupply {
+        /**
+          * Drop SDK Key
+         */
+        "apikey": string;
+        /**
+          * Flag to enable testnet mode
+         */
+        "dev": boolean;
+    }
     interface NkWalletButton {
         "disabled": boolean;
         "loading": boolean;
@@ -70,6 +80,12 @@ declare global {
         prototype: HTMLNkSuccessMessageElement;
         new (): HTMLNkSuccessMessageElement;
     };
+    interface HTMLNkSupplyElement extends Components.NkSupply, HTMLStencilElement {
+    }
+    var HTMLNkSupplyElement: {
+        prototype: HTMLNkSupplyElement;
+        new (): HTMLNkSupplyElement;
+    };
     interface HTMLNkWalletButtonElement extends Components.NkWalletButton, HTMLStencilElement {
     }
     var HTMLNkWalletButtonElement: {
@@ -82,6 +98,7 @@ declare global {
         "nk-loading": HTMLNkLoadingElement;
         "nk-mint-button": HTMLNkMintButtonElement;
         "nk-success-message": HTMLNkSuccessMessageElement;
+        "nk-supply": HTMLNkSupplyElement;
         "nk-wallet-button": HTMLNkWalletButtonElement;
     }
 }
@@ -117,6 +134,16 @@ declare namespace LocalJSX {
     interface NkSuccessMessage {
         "onClosed"?: (event: CustomEvent<boolean>) => void;
     }
+    interface NkSupply {
+        /**
+          * Drop SDK Key
+         */
+        "apikey": string;
+        /**
+          * Flag to enable testnet mode
+         */
+        "dev"?: boolean;
+    }
     interface NkWalletButton {
         "disabled"?: boolean;
         "loading"?: boolean;
@@ -127,6 +154,7 @@ declare namespace LocalJSX {
         "nk-loading": NkLoading;
         "nk-mint-button": NkMintButton;
         "nk-success-message": NkSuccessMessage;
+        "nk-supply": NkSupply;
         "nk-wallet-button": NkWalletButton;
     }
 }
@@ -139,6 +167,7 @@ declare module "@stencil/core" {
             "nk-loading": LocalJSX.NkLoading & JSXBase.HTMLAttributes<HTMLNkLoadingElement>;
             "nk-mint-button": LocalJSX.NkMintButton & JSXBase.HTMLAttributes<HTMLNkMintButtonElement>;
             "nk-success-message": LocalJSX.NkSuccessMessage & JSXBase.HTMLAttributes<HTMLNkSuccessMessageElement>;
+            "nk-supply": LocalJSX.NkSupply & JSXBase.HTMLAttributes<HTMLNkSupplyElement>;
             "nk-wallet-button": LocalJSX.NkWalletButton & JSXBase.HTMLAttributes<HTMLNkWalletButtonElement>;
         }
     }
