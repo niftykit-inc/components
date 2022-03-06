@@ -18,6 +18,7 @@
 
 | Event             | Description | Type                          |
 | ----------------- | ----------- | ----------------------------- |
+| `minted`          |             | `CustomEvent<DropCollection>` |
 | `walletConnected` |             | `CustomEvent<DropCollection>` |
 
 

@@ -116,6 +116,7 @@ declare namespace LocalJSX {
           * Flag to enable multiple wallet support
          */
         "multiple"?: boolean;
+        "onMinted"?: (event: CustomEvent<DropCollection>) => void;
         "onWalletConnected"?: (event: CustomEvent<DropCollection>) => void;
     }
     interface NkErrorMessage {

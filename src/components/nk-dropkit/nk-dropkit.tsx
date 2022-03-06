@@ -33,6 +33,7 @@ export class NkDropkit {
   @State() msg: Msg = null;
 
   @Event() walletConnected: EventEmitter<DropCollection>;
+  @Event() minted: EventEmitter<DropCollection>;
 
   private drop: Dropkit | null = null;
   private maxPerMint: number = 0;
@@ -100,6 +101,8 @@ export class NkDropkit {
       throw new Error('Dropkit is not initialized');
     }
     await this.drop.mint(quantity);
+    const dropCollection = await this.getCollectionInfo();
+    this.minted.emit(dropCollection);
     this.msg = { error: false, text: `Tokens Minted: ${quantity}` };
   }
 
@@ -131,13 +134,7 @@ export class NkDropkit {
     try {
       this.drop = await Dropkit.create(this.apikey, this.dev, providers);
       this.maxPerMint = await this.drop.maxPerMint();
-      const dropCollection: DropCollection = {
-        maxAmount: await this.drop.maxAmount(),
-        maxPerMint: await this.drop.maxPerMint(),
-        maxPerWallet: await this.drop.maxPerWallet(),
-        totalSupply: await this.drop.totalSupply(),
-        walletTokensCount: await this.drop.walletTokensCount(),
-      };
+      const dropCollection = await this.getCollectionInfo();
       this.walletConnected.emit(dropCollection);
       this.dropStarted = true;
     } catch (e) {
@@ -145,5 +142,19 @@ export class NkDropkit {
     } finally {
       this.loading = false;
     }
+  }
+
+  private async getCollectionInfo(): Promise<DropCollection> {
+    if (!this.drop) {
+      throw new Error('Dropkit is not initialized');
+    }
+    const dropCollection: DropCollection = {
+      maxAmount: await this.drop.maxAmount(),
+      maxPerMint: await this.drop.maxPerMint(),
+      maxPerWallet: await this.drop.maxPerWallet(),
+      totalSupply: await this.drop.totalSupply(),
+      walletTokensCount: await this.drop.walletTokensCount(),
+    };
+    return dropCollection;
   }
 }

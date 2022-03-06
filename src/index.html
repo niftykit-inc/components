@@ -155,7 +155,16 @@
       const collection = event.detail;
       const supply = document.getElementById('supply');
       supply.innerHTML = `${collection.totalSupply}/${collection.maxAmount}`;
-    })
+    });
+
+    drop.addEventListener('minted', event => {
+      console.log({
+        event
+      });
+      const collection = event.detail;
+      const supply = document.getElementById('supply');
+      supply.innerHTML = `${collection.totalSupply}/${collection.maxAmount}`;
+    });
 
   </script>
 </body>
