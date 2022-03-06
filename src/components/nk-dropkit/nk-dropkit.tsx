@@ -4,6 +4,7 @@ import Dropkit from 'dropkit.js';
 import WalletLink from 'walletlink';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import { DropCollection } from '../../types/drop-collection.interface';
+import { Msg } from '../../types/message.type';
 
 @Component({
   tag: 'nk-dropkit',
@@ -146,8 +147,3 @@ export class NkDropkit {
     }
   }
 }
-
-type Msg = {
-  error: boolean;
-  text: string;
-};

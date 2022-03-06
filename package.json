@@ -49,7 +49,8 @@
     "@material/select": "^13.0.0",
     "@stencil/core": "^2.13.0",
     "@walletconnect/web3-provider": "^1.7.1",
-    "dropkit.js": "0.0.13",
+    "dropkit.js": "^0.0.14",
+    "ethers": "^5.5.4",
     "walletlink": "^2.4.7"
   },
   "devDependencies": {
