@@ -37,8 +37,8 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: Install modules
-        run: npm install
+        run: yarn
       - name: Run tests
-        run: npm run test:ci
+        run: yarn test:ci
         env:
           INFURA_ID: ${{ secrets.INFURA_ID }}
