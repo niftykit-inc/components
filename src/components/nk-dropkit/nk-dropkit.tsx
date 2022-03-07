@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop, State, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, State, Host, h, getAssetPath } from '@stencil/core';
 import { Env } from '@stencil/core';
 import Dropkit from 'dropkit.js';
 import WalletLink from 'walletlink';
@@ -10,6 +10,7 @@ import { Msg } from '../../types/message.type';
   tag: 'nk-dropkit',
   styleUrl: 'nk-dropkit.css',
   shadow: true,
+  assetsDirs: ['assets'],
 })
 export class NkDropkit {
   /**
@@ -108,30 +109,9 @@ export class NkDropkit {
 
   private async initDrop(): Promise<void> {
     this.loading = true;
-    let providers = {};
-    const infuraId = Env.infuraId;
-    if (infuraId && this.multiple) {
-      providers = {
-        walletlink: {
-          package: WalletLink,
-          options: {
-            appName: 'Dropkit',
-            infuraId,
-          },
-        },
-        walletconnect: {
-          package: WalletConnectProvider,
-          options: {
-            infuraId,
-            rpc: {
-              80001: 'https://matic-mumbai.chainstacklabs.com',
-              137: 'https://polygon-rpc.com',
-            },
-          },
-        },
-      };
-    }
+
     try {
+      const providers = this.getProviders();
       this.drop = await Dropkit.create(this.apikey, this.dev, providers);
       this.maxPerMint = await this.drop.maxPerMint();
       const dropCollection = await this.getCollectionInfo();
@@ -156,5 +136,64 @@ export class NkDropkit {
       walletTokensCount: await this.drop.walletTokensCount(),
     };
     return dropCollection;
+  }
+
+  private deviceType(): string {
+    const ua = navigator.userAgent;
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+      return 'tablet';
+    }
+    if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+      return 'mobile';
+    }
+    return 'desktop';
+  }
+
+  private getProviders(): any {
+    let providers = {};
+    const infuraId = Env.infuraId;
+    if (infuraId && this.multiple) {
+      providers = {
+        walletlink: {
+          package: WalletLink,
+          options: {
+            appName: 'Dropkit',
+            infuraId,
+          },
+        },
+        walletconnect: {
+          package: WalletConnectProvider,
+          options: {
+            infuraId,
+            rpc: {
+              80001: 'https://matic-mumbai.chainstacklabs.com',
+              137: 'https://polygon-rpc.com',
+            },
+          },
+        },
+      };
+    }
+
+    if (this.deviceType() === 'mobile') {
+      console.log('mobile');
+      providers = {
+        ...providers,
+        'custom-metamask': {
+          display: {
+            logo: getAssetPath('./assets/metamask-logo.svg'),
+            name: 'MetaMask',
+            description: 'Connect to your MetaMask Wallet',
+          },
+          package: true,
+          connector: async () => {
+            const url = `${window.location.origin}${window.location.pathname}`;
+            window.location.href = `https://metamask.app.link/dapp/${url}`;
+            return;
+          },
+        },
+      };
+    }
+
+    return providers;
   }
 }
