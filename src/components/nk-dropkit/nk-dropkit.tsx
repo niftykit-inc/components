@@ -1,16 +1,16 @@
-import { Component, Event, EventEmitter, Prop, State, Host, h, getAssetPath } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, State, Host, h } from '@stencil/core';
 import { Env } from '@stencil/core';
 import Dropkit from 'dropkit.js';
 import WalletLink from 'walletlink';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import { DropCollection } from '../../types/drop-collection.interface';
 import { Msg } from '../../types/message.type';
+import { METAMASK_BASE64 } from '../../config/logos';
 
 @Component({
   tag: 'nk-dropkit',
   styleUrl: 'nk-dropkit.css',
   shadow: true,
-  assetsDirs: ['assets'],
 })
 export class NkDropkit {
   /**
@@ -180,7 +180,7 @@ export class NkDropkit {
         ...providers,
         'custom-metamask': {
           display: {
-            logo: getAssetPath('./assets/metamask-logo.svg'),
+            logo: METAMASK_BASE64,
             name: 'MetaMask',
             description: 'Connect to your MetaMask Wallet',
           },

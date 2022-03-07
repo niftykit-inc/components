@@ -39,6 +39,6 @@ jobs:
       - name: Install modules
         run: yarn
       - name: Run tests
-        run: yarn test:ci
+        run: yarn test
         env:
           INFURA_ID: ${{ secrets.INFURA_ID }}
