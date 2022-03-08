@@ -113,6 +113,13 @@ export class NkDropkit {
     try {
       const providers = this.getProviders();
       this.drop = await Dropkit.create(this.apikey, this.dev, providers);
+      if (this.isMobile() && this.drop.ethInstance?.on) {
+        this.drop.ethInstance.on('chainChanged', async () => {
+          this.dropStarted = false;
+          this.msg = { error: false, text: 'Switching networks...' };
+          window.location.reload();
+        });
+      }
       this.maxPerMint = await this.drop.maxPerMint();
       const dropCollection = await this.getCollectionInfo();
       this.walletConnected.emit(dropCollection);
@@ -136,6 +143,10 @@ export class NkDropkit {
       walletTokensCount: await this.drop.walletTokensCount(),
     };
     return dropCollection;
+  }
+
+  private isMobile(): boolean {
+    return this.deviceType() !== 'desktop';
   }
 
   private deviceType(): string {
@@ -174,8 +185,7 @@ export class NkDropkit {
       };
     }
 
-    if (this.deviceType() === 'mobile') {
-      console.log('mobile');
+    if (this.isMobile()) {
       providers = {
         ...providers,
         'custom-metamask': {
@@ -185,10 +195,9 @@ export class NkDropkit {
             description: 'Connect to your MetaMask Wallet',
           },
           package: true,
-          connector: async () => {
+          connector: () => {
             const url = `${window.location.origin}${window.location.pathname}`;
             window.location.href = `https://metamask.app.link/dapp/${url}`;
-            return;
           },
         },
       };
