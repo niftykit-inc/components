@@ -115,6 +115,8 @@ export class NkDropkit {
       this.drop = await Dropkit.create(this.apikey, this.dev, providers);
       if (this.isMobile() && this.drop.ethInstance?.on) {
         this.drop.ethInstance.on('chainChanged', async () => {
+          this.dropStarted = false;
+          this.msg = { error: false, text: 'Switching networks...' };
           window.location.reload();
         });
       }
