@@ -114,7 +114,7 @@ export class NkDropkit {
       const providers = this.getProviders();
       this.drop = await Dropkit.create(this.apikey, this.dev, providers);
       if (this.isMobile() && this.drop.ethInstance?.on) {
-        this.drop.ethInstance.on('chainChanged', async (chainId: string) => {
+        this.drop.ethInstance.on('chainChanged', async () => {
           this.drop = await Dropkit.create(this.apikey, this.dev, providers);
         });
       }
