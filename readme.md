@@ -4,28 +4,28 @@
 
 NiftyKit's Web Components Collection
 
-## \<nk-dropkit>
+## Installation
 
-### Using this component
+1. Install via npm
 
-There are a few strategies we recommend for using this component:
+```bash
+npm install @niftykit/components
+```
 
-#### Script tag
-
-- Add a script tag in your `<head>` section similar to this:
-
- ```html
-  <script type='module' src='https://unpkg.com/@niftykit/components/dist/components/components.esm.js'></script>
- ````
-
-#### Node Modules
-
-- Run `npm install @niftykit/components --save`
-- Add an import to the npm packages `import @niftykit/components;`
-
-#### Example
+2. Import via CDN
 
 ```html
-<!-- You can use the element anywhere in your template, JSX, HTML, etc -->
-<nk-dropkit apikey="YOUR-SDK-KEY"></nk-dropkit>
+<script type='module' src='https://unpkg.com/@niftykit/components/dist/components/components.esm.js'></script>
 ```
+
+## Example
+
+```html
+<script type='module' src='https://unpkg.com/@niftykit/components/dist/components/components.esm.js'></script>
+<!-- You can use the element anywhere in your template, JSX, HTML, etc -->
+<nk-dropkit apikey="YOUR-SDK-KEY" />
+```
+
+* See it live [here](https://jovial-thompson-aa5239.netlify.app/)
+* See the source code [here](/src/index.html)
+* Edit it on [Codepen](https://codepen.io/jcurbelo/pen/NWwoPYe)
