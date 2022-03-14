@@ -28,6 +28,16 @@ export class NkDropkit {
    */
   @Prop() multiple: boolean = true;
 
+  /**
+   * Connect Wallet Button default text
+   */
+  @Prop() walletText: string = 'Connect Wallet';
+
+  /**
+   * Mint Button default text
+   */
+  @Prop() mintText: string = 'Mint NFT';
+
   @State() loading: boolean;
   @State() dropStarted: boolean;
   @State() selectValue: number;
@@ -57,7 +67,7 @@ export class NkDropkit {
     const ConnectWalletBtn = () => {
       return (
         <nk-wallet-button exportparts="wallet-btn-container, wallet-btn" disabled={this.loading} loading={this.loading} onClick={() => this.initDrop()}>
-          Connect Wallet
+          {this.walletText}
         </nk-wallet-button>
       );
     };
@@ -70,6 +80,7 @@ export class NkDropkit {
           maxPerMint={this.maxPerMint}
           disabled={this.loading}
           loading={this.loading}
+          placeholder={this.mintText}
           onTokensChanged={event => this.handleSelect(event)}
         ></nk-mint-button>
       );

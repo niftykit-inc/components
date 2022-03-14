@@ -17,9 +17,17 @@ export namespace Components {
          */
         "dev": boolean;
         /**
+          * Mint Button default text
+         */
+        "mintText": string;
+        /**
           * Flag to enable multiple wallet support
          */
         "multiple": boolean;
+        /**
+          * Connect Wallet Button default text
+         */
+        "walletText": string;
     }
     interface NkErrorMessage {
     }
@@ -113,11 +121,19 @@ declare namespace LocalJSX {
          */
         "dev"?: boolean;
         /**
+          * Mint Button default text
+         */
+        "mintText"?: string;
+        /**
           * Flag to enable multiple wallet support
          */
         "multiple"?: boolean;
         "onMinted"?: (event: CustomEvent<DropCollection>) => void;
         "onWalletConnected"?: (event: CustomEvent<DropCollection>) => void;
+        /**
+          * Connect Wallet Button default text
+         */
+        "walletText"?: string;
     }
     interface NkErrorMessage {
         "onClosed"?: (event: CustomEvent<boolean>) => void;
