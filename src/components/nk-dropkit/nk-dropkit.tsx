@@ -38,6 +38,11 @@ export class NkDropkit {
    */
   @Prop() mintText: string = 'Mint NFT';
 
+  /**
+   * Sold Out default text
+   */
+  @Prop() soldOutText: string = 'Sold Out';
+
   @State() loading: boolean;
   @State() dropStarted: boolean;
   @State() selectValue: number;
@@ -48,6 +53,7 @@ export class NkDropkit {
 
   private drop: Dropkit | null = null;
   private maxPerMint: number = 0;
+  private isSoldOut: boolean = false;
 
   render() {
     const NkMsg = () => {
@@ -89,7 +95,13 @@ export class NkDropkit {
     return (
       <Host>
         <NkMsg />
-        {!this.dropStarted ? <ConnectWalletBtn /> : <MintBtn />}
+        {!this.dropStarted ? (
+          <ConnectWalletBtn />
+        ) : this.isSoldOut ? (
+          <nk-sold-out exportparts="sold-out-container, sold-out-container">{this.soldOutText}</nk-sold-out>
+        ) : (
+          <MintBtn />
+        )}
         <slot />
       </Host>
     );
@@ -133,6 +145,7 @@ export class NkDropkit {
       }
       this.maxPerMint = await this.drop.maxPerMint();
       const dropCollection = await this.getCollectionInfo();
+      this.isSoldOut = dropCollection.totalSupply >= dropCollection.maxAmount;
       this.walletConnected.emit(dropCollection);
       this.dropStarted = true;
     } catch (e) {

@@ -25,6 +25,10 @@ export namespace Components {
          */
         "multiple": boolean;
         /**
+          * Sold Out default text
+         */
+        "soldOutText": string;
+        /**
           * Connect Wallet Button default text
          */
         "walletText": string;
@@ -39,6 +43,8 @@ export namespace Components {
         "maxPerMint": number;
         "placeholder": string;
         "selectedValue": number;
+    }
+    interface NkSoldOut {
     }
     interface NkSuccessMessage {
     }
@@ -82,6 +88,12 @@ declare global {
         prototype: HTMLNkMintButtonElement;
         new (): HTMLNkMintButtonElement;
     };
+    interface HTMLNkSoldOutElement extends Components.NkSoldOut, HTMLStencilElement {
+    }
+    var HTMLNkSoldOutElement: {
+        prototype: HTMLNkSoldOutElement;
+        new (): HTMLNkSoldOutElement;
+    };
     interface HTMLNkSuccessMessageElement extends Components.NkSuccessMessage, HTMLStencilElement {
     }
     var HTMLNkSuccessMessageElement: {
@@ -105,6 +117,7 @@ declare global {
         "nk-error-message": HTMLNkErrorMessageElement;
         "nk-loading": HTMLNkLoadingElement;
         "nk-mint-button": HTMLNkMintButtonElement;
+        "nk-sold-out": HTMLNkSoldOutElement;
         "nk-success-message": HTMLNkSuccessMessageElement;
         "nk-supply": HTMLNkSupplyElement;
         "nk-wallet-button": HTMLNkWalletButtonElement;
@@ -131,6 +144,10 @@ declare namespace LocalJSX {
         "onMinted"?: (event: CustomEvent<DropCollection>) => void;
         "onWalletConnected"?: (event: CustomEvent<DropCollection>) => void;
         /**
+          * Sold Out default text
+         */
+        "soldOutText"?: string;
+        /**
           * Connect Wallet Button default text
          */
         "walletText"?: string;
@@ -147,6 +164,8 @@ declare namespace LocalJSX {
         "onTokensChanged"?: (event: CustomEvent<number>) => void;
         "placeholder"?: string;
         "selectedValue"?: number;
+    }
+    interface NkSoldOut {
     }
     interface NkSuccessMessage {
         "onClosed"?: (event: CustomEvent<boolean>) => void;
@@ -170,6 +189,7 @@ declare namespace LocalJSX {
         "nk-error-message": NkErrorMessage;
         "nk-loading": NkLoading;
         "nk-mint-button": NkMintButton;
+        "nk-sold-out": NkSoldOut;
         "nk-success-message": NkSuccessMessage;
         "nk-supply": NkSupply;
         "nk-wallet-button": NkWalletButton;
@@ -183,6 +203,7 @@ declare module "@stencil/core" {
             "nk-error-message": LocalJSX.NkErrorMessage & JSXBase.HTMLAttributes<HTMLNkErrorMessageElement>;
             "nk-loading": LocalJSX.NkLoading & JSXBase.HTMLAttributes<HTMLNkLoadingElement>;
             "nk-mint-button": LocalJSX.NkMintButton & JSXBase.HTMLAttributes<HTMLNkMintButtonElement>;
+            "nk-sold-out": LocalJSX.NkSoldOut & JSXBase.HTMLAttributes<HTMLNkSoldOutElement>;
             "nk-success-message": LocalJSX.NkSuccessMessage & JSXBase.HTMLAttributes<HTMLNkSuccessMessageElement>;
             "nk-supply": LocalJSX.NkSupply & JSXBase.HTMLAttributes<HTMLNkSupplyElement>;
             "nk-wallet-button": LocalJSX.NkWalletButton & JSXBase.HTMLAttributes<HTMLNkWalletButtonElement>;
