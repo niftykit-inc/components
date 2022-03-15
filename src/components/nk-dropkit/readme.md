@@ -25,6 +25,29 @@
 | `walletConnected` |             | `CustomEvent<DropCollection>` |
 
 
+## Methods
+
+### `initDrop() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `mint(quantity: number) => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## Dependencies
 
 ### Depends on
