@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop, State, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, State, Host, h, Method } from '@stencil/core';
 import { Env } from '@stencil/core';
 import Dropkit from 'dropkit.js';
 import WalletLink from 'walletlink';
@@ -120,9 +120,10 @@ export class NkDropkit {
     }
   }
 
+  @Method()
   async mint(quantity: number): Promise<void> {
     if (!this.drop) {
-      throw new Error('Dropkit is not initialized');
+      await this.initDrop();
     }
     await this.drop.mint(quantity);
     const dropCollection = await this.getCollectionInfo();
@@ -130,7 +131,8 @@ export class NkDropkit {
     this.msg = { error: false, text: `Tokens Minted: ${quantity}` };
   }
 
-  private async initDrop(): Promise<void> {
+  @Method()
+  async initDrop(): Promise<void> {
     this.loading = true;
 
     try {

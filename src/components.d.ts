@@ -16,6 +16,8 @@ export namespace Components {
           * Flag to enable testnet mode
          */
         "dev": boolean;
+        "initDrop": () => Promise<void>;
+        "mint": (quantity: number) => Promise<void>;
         /**
           * Mint Button default text
          */
