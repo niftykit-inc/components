@@ -161,6 +161,9 @@
         event
       });
       const collection = event.detail;
+      console.log({
+        collection
+      });
       const supply = document.getElementById('supply');
       supply.innerHTML = `${collection.totalSupply}/${collection.maxAmount}`;
     });
@@ -170,6 +173,9 @@
         event
       });
       const collection = event.detail;
+      console.log({
+        collection
+      });
       const supply = document.getElementById('supply');
       supply.innerHTML = `${collection.totalSupply}/${collection.maxAmount}`;
     });
