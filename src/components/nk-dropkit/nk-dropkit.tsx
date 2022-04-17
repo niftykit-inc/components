@@ -167,6 +167,7 @@ export class NkDropkit {
       maxPerWallet: await this.drop.maxPerWallet(),
       totalSupply: await this.drop.totalSupply(),
       walletTokensCount: await this.drop.walletTokensCount(),
+      walletAddress: this.drop.walletAddress,
     };
     return dropCollection;
   }
