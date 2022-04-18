@@ -98,7 +98,7 @@ export class NkDropkit {
         {!this.dropStarted ? (
           <ConnectWalletBtn />
         ) : this.isSoldOut ? (
-          <nk-sold-out exportparts="sold-out-container, sold-out-container">{this.soldOutText}</nk-sold-out>
+          <nk-sold-out exportparts="sold-out-container, sold-out-text">{this.soldOutText}</nk-sold-out>
         ) : (
           <MintBtn />
         )}
