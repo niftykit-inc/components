@@ -1,7 +1,7 @@
 import { Component, Event, EventEmitter, Prop, State, Host, h, Method } from '@stencil/core';
 import { Env } from '@stencil/core';
 import Dropkit from 'dropkit.js';
-import WalletLink from 'walletlink';
+import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import { DropCollection } from '../../types/drop-collection.interface';
 import { Msg } from '../../types/message.type';
@@ -193,7 +193,7 @@ export class NkDropkit {
     if (infuraId && this.multiple) {
       providers = {
         walletlink: {
-          package: WalletLink,
+          package: CoinbaseWalletSDK,
           options: {
             appName: 'Dropkit',
             infuraId,

@@ -43,6 +43,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
+    "@coinbase/wallet-sdk": "^3.0.12",
     "@material/button": "^13.0.0",
     "@material/circular-progress": "^13.0.0",
     "@material/ripple": "^13.0.0",
@@ -50,8 +51,7 @@
     "@stencil/core": "^2.13.0",
     "@walletconnect/web3-provider": "^1.7.1",
     "dropkit.js": "^0.0.15",
-    "ethers": "^5.5.4",
-    "walletlink": "^2.4.7"
+    "ethers": "^5.5.4"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
