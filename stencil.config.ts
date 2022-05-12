@@ -17,8 +17,8 @@ export const config: Config = {
     before: [
       replace({
         'process.env.NODE_DEBUG': null,
-        'process.env.WALLETLINK_URL': null,
-        'process.env.WALLETLINK_VERSION': null,
+        'process.env.LINK_API_URL': null,
+        'process.env.SDK_VERSION': null,
       }),
       rollupCommonjs({
         transformMixedEsModules: true,
