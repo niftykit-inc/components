@@ -29,6 +29,7 @@ export class NKWinterCheckout {
    */
   @Prop() projectId!: string;
 
+  @Prop() presaleConnect: boolean = false;
   @Prop() walletAddress: string = null;
   @Prop() email: string = null;
   @Prop() mintQuantity: string = null;
@@ -43,6 +44,7 @@ export class NKWinterCheckout {
   @State() extraMintParams: Record<string, string | number | string[] | undefined> = null;
   @State() priceFunctionParams: Record<string, string | number | string[] | undefined> = null;
   @State() disabled = false;
+  @State() presale = false;
 
   @Event() close: EventEmitter<boolean>;
   @Event() success: EventEmitter;
@@ -109,9 +111,24 @@ export class NKWinterCheckout {
       );
     };
 
+    const WalletAddress = () => {
+      if (!this.presale || this.presaleConnect) {
+        return null;
+      }
+      return (
+        <div part="wallet-address-container" class="wallet-address">
+          <div part="wallet-address-label" class="wallet-address-label">
+            Wallet Address
+          </div>
+          <input part="wallet-address-input" class="wallet-address-value" value={this.walletAddress} onInput={(e: any) => (this.walletAddress = e.target.value)} />
+        </div>
+      );
+    };
+
     return (
       <Host>
         <NkMsg />
+        <WalletAddress />
         <div part="wallet-btn-container" class="mdc-touch-target-wrapper">
           <button
             onClick={() => this.openModal()}
@@ -134,32 +151,52 @@ export class NKWinterCheckout {
   async openModal(): Promise<void> {
     this.loading = true;
     try {
-      const presale = await this.drop.presaleActive();
-      if (presale) {
-        const providers = this.getProviders();
-        // creates new drop with signer
-        this.drop = await Dropkit.create(this.apikey, this.dev, providers);
-        if (this.isMobile() && this.drop.ethInstance?.on) {
-          this.drop.ethInstance.on('chainChanged', async () => {
-            this.msg = { error: false, text: 'Switching networks...' };
-            window.location.reload();
-          });
+      if (this.presale) {
+        if (this.presaleConnect) {
+          await this.startPresaleFromSigner();
+        } else {
+          await this.startPresaleFromInput();
         }
-        const proof = await this.drop.generateProofV2();
-        if (proof.message) {
-          throw new Error(proof.message); // not part of presale
-        }
-        this.walletAddress = this.drop.walletAddress;
-        this.extraMintParams = {
-          allowed: proof.allowed,
-          merkleProof: proof.proof,
-        };
       }
+      this.isOpen = true;
     } catch (e) {
       this.loading = false;
       this.msg = { error: true, text: e.message };
     }
-    this.isOpen = true;
+  }
+
+  private async startPresaleFromSigner(): Promise<void> {
+    const providers = this.getProviders();
+    // creates new drop with signer
+    this.drop = await Dropkit.create(this.apikey, this.dev, providers);
+    if (this.isMobile() && this.drop.ethInstance?.on) {
+      this.drop.ethInstance.on('chainChanged', async () => {
+        this.msg = { error: false, text: 'Switching networks...' };
+        window.location.reload();
+      });
+    }
+    const proof = await this.drop.generateProofV2();
+    if (proof.message) {
+      throw new Error(proof.message); // not part of presale
+    }
+    this.walletAddress = this.drop.walletAddress;
+    this.extraMintParams = {
+      allowed: proof.allowed,
+      merkleProof: proof.proof,
+    };
+  }
+
+  private async startPresaleFromInput(): Promise<void> {
+    this.drop.walletAddress = this.walletAddress;
+    const proof = await this.drop.generateProofV2();
+    if (proof.message) {
+      throw new Error(proof.message); // not part of presale
+    }
+    this.walletAddress = this.drop.walletAddress;
+    this.extraMintParams = {
+      allowed: proof.allowed,
+      merkleProof: proof.proof,
+    };
   }
 
   private async initDrop(): Promise<void> {
@@ -180,6 +217,7 @@ export class NKWinterCheckout {
           this.disabled = true;
           throw new Error('Sale is not active');
         }
+        this.presale = await this.drop.presaleActive();
       }
     } catch (e) {
       this.msg = { error: true, text: e.message };
