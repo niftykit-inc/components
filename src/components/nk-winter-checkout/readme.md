@@ -16,6 +16,7 @@
 | `erc1155Video`           | `erc-1-1-5-5-video` |                             | `string`  | `null`             |
 | `mintQuantity`           | `mint-quantity`     |                             | `string`  | `null`             |
 | `mintText`               | `mint-text`         |                             | `string`  | `'Mint With Card'` |
+| `presaleConnect`         | `presale-connect`   |                             | `boolean` | `false`            |
 | `projectId` _(required)_ | `project-id`        | Winter Project Id           | `string`  | `undefined`        |
 | `projectTitle`           | `project-title`     |                             | `string`  | `null`             |
 | `walletAddress`          | `wallet-address`    |                             | `string`  | `null`             |
@@ -44,10 +45,13 @@ Type: `Promise<void>`
 
 ## Shadow Parts
 
-| Part                     | Description |
-| ------------------------ | ----------- |
-| `"wallet-btn-container"` |             |
-| `"winter-btn"`           |             |
+| Part                         | Description |
+| ---------------------------- | ----------- |
+| `"wallet-address-container"` |             |
+| `"wallet-address-input"`     |             |
+| `"wallet-address-label"`     |             |
+| `"wallet-btn-container"`     |             |
+| `"winter-btn"`               |             |
 
 
 ## Dependencies

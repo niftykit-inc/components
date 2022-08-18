@@ -79,6 +79,7 @@ export namespace Components {
         "mintQuantity": string;
         "mintText": string;
         "openModal": () => Promise<void>;
+        "presaleConnect": boolean;
         /**
           * Winter Project Id
          */
@@ -231,6 +232,7 @@ declare namespace LocalJSX {
         "mintText"?: string;
         "onClose"?: (event: CustomEvent<boolean>) => void;
         "onSuccess"?: (event: CustomEvent<any>) => void;
+        "presaleConnect"?: boolean;
         /**
           * Winter Project Id
          */
