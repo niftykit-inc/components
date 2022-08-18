@@ -54,13 +54,11 @@ Type: `Promise<void>`
 
 ### Depends on
 
-- [nk-error-message](../nk-error-message)
 - [nk-loading](../nk-loading)
 
 ### Graph
 ```mermaid
 graph TD;
-  nk-winter-checkout --> nk-error-message
   nk-winter-checkout --> nk-loading
   style nk-winter-checkout fill:#f9f,stroke:#333,stroke-width:4px
 ```

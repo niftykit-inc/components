@@ -100,10 +100,12 @@ export class NKWinterCheckout {
         return null;
       }
 
+      const Msg = this.msg.error ? 'nk-error-message' : 'nk-success-message';
+
       return (
-        <nk-error-message class="info" exportparts="info" onClosed={() => (this.msg = null)}>
+        <Msg class="info" exportparts="info" onClosed={() => (this.msg = null)}>
           {this.msg.text}
-        </nk-error-message>
+        </Msg>
       );
     };
 
@@ -149,8 +151,8 @@ export class NKWinterCheckout {
         }
         this.walletAddress = this.drop.walletAddress;
         this.extraMintParams = {
-          proof: proof.proof,
           allowed: proof.allowed,
+          merkleProof: proof.proof,
         };
       }
     } catch (e) {
@@ -193,8 +195,7 @@ export class NKWinterCheckout {
       this.loading = false;
       this.close.emit(false);
     } else if (data.name === 'successfulWinterCheckout') {
-      this.isOpen = false;
-      this.loading = false;
+      this.msg = { error: false, text: 'Mint successful!' };
       this.close.emit(false);
       this.success.emit();
     }
