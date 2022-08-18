@@ -64,6 +64,19 @@ export namespace Components {
         "disabled": boolean;
         "loading": boolean;
     }
+    interface NkWinterCheckout {
+        "brandImage": string;
+        "email": string;
+        "erc1155Video": string;
+        "extraMintParams": Record<string, string | number | undefined>;
+        "isOpen": boolean;
+        "mintQuantity": string;
+        "priceFunctionParams": Record<string, string | number | undefined>;
+        "production": boolean;
+        "projectId": string;
+        "title": string;
+        "walletAddress": string;
+    }
 }
 declare global {
     interface HTMLNkDropkitElement extends Components.NkDropkit, HTMLStencilElement {
@@ -114,6 +127,12 @@ declare global {
         prototype: HTMLNkWalletButtonElement;
         new (): HTMLNkWalletButtonElement;
     };
+    interface HTMLNkWinterCheckoutElement extends Components.NkWinterCheckout, HTMLStencilElement {
+    }
+    var HTMLNkWinterCheckoutElement: {
+        prototype: HTMLNkWinterCheckoutElement;
+        new (): HTMLNkWinterCheckoutElement;
+    };
     interface HTMLElementTagNameMap {
         "nk-dropkit": HTMLNkDropkitElement;
         "nk-error-message": HTMLNkErrorMessageElement;
@@ -123,6 +142,7 @@ declare global {
         "nk-success-message": HTMLNkSuccessMessageElement;
         "nk-supply": HTMLNkSupplyElement;
         "nk-wallet-button": HTMLNkWalletButtonElement;
+        "nk-winter-checkout": HTMLNkWinterCheckoutElement;
     }
 }
 declare namespace LocalJSX {
@@ -186,6 +206,21 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "loading"?: boolean;
     }
+    interface NkWinterCheckout {
+        "brandImage"?: string;
+        "email"?: string;
+        "erc1155Video"?: string;
+        "extraMintParams"?: Record<string, string | number | undefined>;
+        "isOpen"?: boolean;
+        "mintQuantity"?: string;
+        "onOnClose"?: (event: CustomEvent<boolean>) => void;
+        "onOnSuccess"?: (event: CustomEvent<any>) => void;
+        "priceFunctionParams"?: Record<string, string | number | undefined>;
+        "production"?: boolean;
+        "projectId": string;
+        "title"?: string;
+        "walletAddress"?: string;
+    }
     interface IntrinsicElements {
         "nk-dropkit": NkDropkit;
         "nk-error-message": NkErrorMessage;
@@ -195,6 +230,7 @@ declare namespace LocalJSX {
         "nk-success-message": NkSuccessMessage;
         "nk-supply": NkSupply;
         "nk-wallet-button": NkWalletButton;
+        "nk-winter-checkout": NkWinterCheckout;
     }
 }
 export { LocalJSX as JSX };
@@ -209,6 +245,7 @@ declare module "@stencil/core" {
             "nk-success-message": LocalJSX.NkSuccessMessage & JSXBase.HTMLAttributes<HTMLNkSuccessMessageElement>;
             "nk-supply": LocalJSX.NkSupply & JSXBase.HTMLAttributes<HTMLNkSupplyElement>;
             "nk-wallet-button": LocalJSX.NkWalletButton & JSXBase.HTMLAttributes<HTMLNkWalletButtonElement>;
+            "nk-winter-checkout": LocalJSX.NkWinterCheckout & JSXBase.HTMLAttributes<HTMLNkWinterCheckoutElement>;
         }
     }
 }
