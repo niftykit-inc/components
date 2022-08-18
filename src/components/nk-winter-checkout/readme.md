@@ -7,19 +7,18 @@
 
 ## Properties
 
-| Property                 | Attribute           | Description | Type                                 | Default     |
-| ------------------------ | ------------------- | ----------- | ------------------------------------ | ----------- |
-| `brandImage`             | `brand-image`       |             | `string`                             | `null`      |
-| `email`                  | `email`             |             | `string`                             | `null`      |
-| `erc1155Video`           | `erc-1-1-5-5-video` |             | `string`                             | `null`      |
-| `extraMintParams`        | --                  |             | `{ [x: string]: string \| number; }` | `null`      |
-| `isOpen`                 | `is-open`           |             | `boolean`                            | `false`     |
-| `mintQuantity`           | `mint-quantity`     |             | `string`                             | `null`      |
-| `priceFunctionParams`    | --                  |             | `{ [x: string]: string \| number; }` | `null`      |
-| `production`             | `production`        |             | `boolean`                            | `true`      |
-| `projectId` _(required)_ | `project-id`        |             | `string`                             | `undefined` |
-| `projectTitle`           | `project-title`     |             | `string`                             | `null`      |
-| `walletAddress`          | `wallet-address`    |             | `string`                             | `null`      |
+| Property                 | Attribute           | Description                 | Type      | Default            |
+| ------------------------ | ------------------- | --------------------------- | --------- | ------------------ |
+| `apikey` _(required)_    | `apikey`            | Drop SDK Key                | `string`  | `undefined`        |
+| `brandImage`             | `brand-image`       |                             | `string`  | `null`             |
+| `dev`                    | `dev`               | Flag to enable testnet mode | `boolean` | `false`            |
+| `email`                  | `email`             |                             | `string`  | `null`             |
+| `erc1155Video`           | `erc-1-1-5-5-video` |                             | `string`  | `null`             |
+| `mintQuantity`           | `mint-quantity`     |                             | `string`  | `null`             |
+| `mintText`               | `mint-text`         |                             | `string`  | `'Mint With Card'` |
+| `projectId` _(required)_ | `project-id`        | Winter Project Id           | `string`  | `undefined`        |
+| `projectTitle`           | `project-title`     |                             | `string`  | `null`             |
+| `walletAddress`          | `wallet-address`    |                             | `string`  | `null`             |
 
 
 ## Events
@@ -29,6 +28,40 @@
 | `close`   |             | `CustomEvent<boolean>` |
 | `success` |             | `CustomEvent<any>`     |
 
+
+## Methods
+
+### `openModal() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
+## Shadow Parts
+
+| Part                     | Description |
+| ------------------------ | ----------- |
+| `"wallet-btn-container"` |             |
+| `"winter-btn"`           |             |
+
+
+## Dependencies
+
+### Depends on
+
+- [nk-loading](../nk-loading)
+
+### Graph
+```mermaid
+graph TD;
+  nk-winter-checkout --> nk-loading
+  style nk-winter-checkout fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 
