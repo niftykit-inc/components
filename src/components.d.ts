@@ -74,7 +74,7 @@ export namespace Components {
         "priceFunctionParams": Record<string, string | number | undefined>;
         "production": boolean;
         "projectId": string;
-        "title": string;
+        "projectTitle": string;
         "walletAddress": string;
     }
 }
@@ -213,12 +213,12 @@ declare namespace LocalJSX {
         "extraMintParams"?: Record<string, string | number | undefined>;
         "isOpen"?: boolean;
         "mintQuantity"?: string;
-        "onOnClose"?: (event: CustomEvent<boolean>) => void;
-        "onOnSuccess"?: (event: CustomEvent<any>) => void;
+        "onClose"?: (event: CustomEvent<boolean>) => void;
+        "onSuccess"?: (event: CustomEvent<any>) => void;
         "priceFunctionParams"?: Record<string, string | number | undefined>;
         "production"?: boolean;
         "projectId": string;
-        "title"?: string;
+        "projectTitle"?: string;
         "walletAddress"?: string;
     }
     interface IntrinsicElements {

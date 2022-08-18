@@ -10,25 +10,25 @@ export class NKWinterCheckout {
   @Prop() email: string = null;
   @Prop() mintQuantity: string = null;
   @Prop() erc1155Video: string = null;
-  @Prop() title: string = null;
+  @Prop() projectTitle: string = null;
   @Prop() brandImage: string = null;
   @Prop() extraMintParams: Record<string, string | number | undefined> = null;
   @Prop() priceFunctionParams: Record<string, string | number | undefined> = null;
   @Prop() production: boolean = true;
   @Prop() isOpen: boolean = false;
 
-  @Event() onClose: EventEmitter<boolean>;
-  @Event() onSuccess: EventEmitter;
+  @Event() close: EventEmitter<boolean>;
+  @Event() success: EventEmitter;
 
   projectUrl: string = '';
 
   private handleWindowEvent = e => {
     const { data } = e;
     if (data === 'closeWinterCheckoutModal') {
-      this.onClose.emit(false);
+      this.close.emit(false);
     } else if (data.name === 'successfulWinterCheckout') {
-      this.onClose.emit(false);
-      this.onSuccess.emit();
+      this.close.emit(false);
+      this.success.emit();
     }
   };
 
@@ -46,8 +46,8 @@ export class NKWinterCheckout {
     if (this.erc1155Video) {
       queryString += '&erc1155Video=' + this.erc1155Video;
     }
-    if (this.title) {
-      queryString += `&title=${encodeURIComponent(this.title)}`;
+    if (this.projectTitle) {
+      queryString += `&title=${encodeURIComponent(this.projectTitle)}`;
     }
     if (this.extraMintParams) {
       queryString += `&extraMintParams=${encodeURIComponent(JSON.stringify(this.extraMintParams))}`;

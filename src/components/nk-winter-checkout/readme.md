@@ -18,16 +18,16 @@
 | `priceFunctionParams`    | --                  |             | `{ [x: string]: string \| number; }` | `null`      |
 | `production`             | `production`        |             | `boolean`                            | `true`      |
 | `projectId` _(required)_ | `project-id`        |             | `string`                             | `undefined` |
-| `title`                  | `title`             |             | `string`                             | `null`      |
+| `projectTitle`           | `project-title`     |             | `string`                             | `null`      |
 | `walletAddress`          | `wallet-address`    |             | `string`                             | `null`      |
 
 
 ## Events
 
-| Event       | Description | Type                   |
-| ----------- | ----------- | ---------------------- |
-| `onClose`   |             | `CustomEvent<boolean>` |
-| `onSuccess` |             | `CustomEvent<any>`     |
+| Event     | Description | Type                   |
+| --------- | ----------- | ---------------------- |
+| `close`   |             | `CustomEvent<boolean>` |
+| `success` |             | `CustomEvent<any>`     |
 
 
 ----------------------------------------------
