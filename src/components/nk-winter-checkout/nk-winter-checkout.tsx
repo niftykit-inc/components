@@ -153,9 +153,8 @@ export class NKWinterCheckout {
         };
       }
     } catch (e) {
-      this.msg = { error: true, text: e.message };
-    } finally {
       this.loading = false;
+      this.msg = { error: true, text: e.message };
     }
     this.isOpen = true;
   }
