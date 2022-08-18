@@ -147,6 +147,7 @@ export class NKWinterCheckout {
         if (proof.message) {
           throw new Error(proof.message); // not part of presale
         }
+        this.walletAddress = this.drop.walletAddress;
         this.extraMintParams = {
           proof: proof.proof,
           allowed: proof.allowed,
