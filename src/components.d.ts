@@ -65,14 +65,23 @@ export namespace Components {
         "loading": boolean;
     }
     interface NkWinterCheckout {
+        /**
+          * Drop SDK Key
+         */
+        "apikey": string;
         "brandImage": string;
+        /**
+          * Flag to enable testnet mode
+         */
+        "dev": boolean;
         "email": string;
         "erc1155Video": string;
-        "extraMintParams": Record<string, string | number | undefined>;
-        "isOpen": boolean;
         "mintQuantity": string;
-        "priceFunctionParams": Record<string, string | number | undefined>;
-        "production": boolean;
+        "mintText": string;
+        "openModal": () => Promise<void>;
+        /**
+          * Winter Project Id
+         */
         "projectId": string;
         "projectTitle": string;
         "walletAddress": string;
@@ -207,16 +216,24 @@ declare namespace LocalJSX {
         "loading"?: boolean;
     }
     interface NkWinterCheckout {
+        /**
+          * Drop SDK Key
+         */
+        "apikey": string;
         "brandImage"?: string;
+        /**
+          * Flag to enable testnet mode
+         */
+        "dev"?: boolean;
         "email"?: string;
         "erc1155Video"?: string;
-        "extraMintParams"?: Record<string, string | number | undefined>;
-        "isOpen"?: boolean;
         "mintQuantity"?: string;
+        "mintText"?: string;
         "onClose"?: (event: CustomEvent<boolean>) => void;
         "onSuccess"?: (event: CustomEvent<any>) => void;
-        "priceFunctionParams"?: Record<string, string | number | undefined>;
-        "production"?: boolean;
+        /**
+          * Winter Project Id
+         */
         "projectId": string;
         "projectTitle"?: string;
         "walletAddress"?: string;
