@@ -8,13 +8,12 @@
   line-height: 20px;
   letter-spacing: 0.15px;
   text-align: left;
-
 }
 
 .success {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #4CAF50;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), #4caf50;
   border-radius: 4px;
-
+  color: #4caf50;
 
   position: relative;
   padding: 0.75rem 1.25rem;
