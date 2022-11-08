@@ -1,6 +1,6 @@
 {
   "name": "@niftykit/components",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "NiftyKit's Web Components Collection",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -50,7 +50,7 @@
     "@material/select": "^13.0.0",
     "@stencil/core": "^2.13.0",
     "@walletconnect/web3-provider": "^1.7.1",
-    "dropkit.js": "^0.0.18",
+    "dropkit.js": "^0.0.19",
     "ethers": "^5.5.4"
   },
   "devDependencies": {
