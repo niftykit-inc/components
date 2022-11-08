@@ -50,7 +50,7 @@
     "@material/select": "^13.0.0",
     "@stencil/core": "^2.13.0",
     "@walletconnect/web3-provider": "^1.7.1",
-    "dropkit.js": "^0.0.18",
+    "dropkit.js": "^0.0.19",
     "ethers": "^5.5.4"
   },
   "devDependencies": {
