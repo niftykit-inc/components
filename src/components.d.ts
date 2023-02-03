@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DropCollection } from "./types/drop-collection.interface";
+export { DropCollection } from "./types/drop-collection.interface";
 export namespace Components {
     interface NkDropkit {
         /**
@@ -87,6 +88,26 @@ export namespace Components {
         "projectTitle": string;
         "walletAddress": string;
     }
+}
+export interface NkDropkitCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNkDropkitElement;
+}
+export interface NkErrorMessageCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNkErrorMessageElement;
+}
+export interface NkMintButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNkMintButtonElement;
+}
+export interface NkSuccessMessageCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNkSuccessMessageElement;
+}
+export interface NkWinterCheckoutCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNkWinterCheckoutElement;
 }
 declare global {
     interface HTMLNkDropkitElement extends Components.NkDropkit, HTMLStencilElement {
@@ -173,8 +194,8 @@ declare namespace LocalJSX {
           * Flag to enable multiple wallet support
          */
         "multiple"?: boolean;
-        "onMinted"?: (event: CustomEvent<DropCollection>) => void;
-        "onWalletConnected"?: (event: CustomEvent<DropCollection>) => void;
+        "onMinted"?: (event: NkDropkitCustomEvent<DropCollection>) => void;
+        "onWalletConnected"?: (event: NkDropkitCustomEvent<DropCollection>) => void;
         /**
           * Sold Out default text
          */
@@ -185,7 +206,7 @@ declare namespace LocalJSX {
         "walletText"?: string;
     }
     interface NkErrorMessage {
-        "onClosed"?: (event: CustomEvent<boolean>) => void;
+        "onClosed"?: (event: NkErrorMessageCustomEvent<boolean>) => void;
     }
     interface NkLoading {
     }
@@ -193,14 +214,14 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "loading"?: boolean;
         "maxPerMint": number;
-        "onTokensChanged"?: (event: CustomEvent<number>) => void;
+        "onTokensChanged"?: (event: NkMintButtonCustomEvent<number>) => void;
         "placeholder"?: string;
         "selectedValue"?: number;
     }
     interface NkSoldOut {
     }
     interface NkSuccessMessage {
-        "onClosed"?: (event: CustomEvent<boolean>) => void;
+        "onClosed"?: (event: NkSuccessMessageCustomEvent<boolean>) => void;
     }
     interface NkSupply {
         /**
@@ -230,8 +251,8 @@ declare namespace LocalJSX {
         "erc1155Video"?: string;
         "mintQuantity"?: string;
         "mintText"?: string;
-        "onClose"?: (event: CustomEvent<boolean>) => void;
-        "onSuccess"?: (event: CustomEvent<any>) => void;
+        "onClose"?: (event: NkWinterCheckoutCustomEvent<boolean>) => void;
+        "onSuccess"?: (event: NkWinterCheckoutCustomEvent<any>) => void;
         "presaleConnect"?: boolean;
         /**
           * Winter Project Id

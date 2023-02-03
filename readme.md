@@ -6,10 +6,14 @@ NiftyKit's Web Components Collection
 
 ## Installation
 
-1. Install via npm
+1. Install via npm or yarn
 
 ```bash
 npm install @niftykit/components
+
+# or
+
+yarn add @niftykit/components
 ```
 
 2. Import via CDN
@@ -18,14 +22,23 @@ npm install @niftykit/components
 <script type='module' src='https://unpkg.com/@niftykit/components/dist/components/components.esm.js'></script>
 ```
 
-## Example
+## Examples
 
 ```html
 <script type='module' src='https://unpkg.com/@niftykit/components/dist/components/components.esm.js'></script>
-<!-- You can use the element anywhere in your template, JSX, HTML, etc -->
+<!-- You can use the elements anywhere in your template, JSX, HTML, etc -->
+
+<!-- Dropkit component (connect wallet + mint button) -->
 <nk-dropkit apikey="YOUR-SDK-KEY" />
+
+<!-- Supply component (mint count) -->
+<nk-supply apikey="YOUR-SDK-KEY" />
+
+<!-- Winter component (pay with fiat) -->
+<nk-winter-checkout apikey="YOUR-SDK-KEY" project-id="YOUR-WINTER-PROJECT-ID" />
 ```
 
+* Explore all components [here](/src/components/)
 * See it live [here](https://jovial-thompson-aa5239.netlify.app/)
 * See the source code [here](/src/index.html)
 * Edit it on [Codepen](https://codepen.io/jcurbelo/pen/NWwoPYe)

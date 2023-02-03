@@ -90,13 +90,13 @@
   <div>
     <div class="dropkit">
       <h3>Mumbai</h3>
-      <nk-dropkit id="mumbai" apikey="pu16DaU0xXCaHnH5Vj3G" dev="true"></nk-dropkit>
+      <nk-dropkit id="mumbai" apikey="l2jCASkzMpuvg6K7uDuo" dev="true"></nk-dropkit>
     </div>
 
     <div class="dropkit">
-      <h3>Rinkeby</h3>
+      <h3>Goerli</h3>
       <h3 id="supply"></h3>
-      <nk-dropkit id="rinkeby" apikey="EAEWCN1AJlu4rDh8XNSQ" dev="true" wallet-text="Hello World" mint-text="Buy">
+      <nk-dropkit id="goerli" apikey="Kg6JG8nYUQ74IIYq5y6F" dev="true" wallet-text="Hello World" mint-text="Buy">
       </nk-dropkit>
     </div>
 
@@ -133,10 +133,10 @@
 
     <div class="widget supply">
       <h3>Supply</h3>
-      <nk-supply apikey="EAEWCN1AJlu4rDh8XNSQ" dev="true">
-        <p>Rinkeby</p>
+      <nk-supply apikey="Kg6JG8nYUQ74IIYq5y6F" dev="true">
+        <p>Goerli</p>
       </nk-supply>
-      <nk-supply apikey="pu16DaU0xXCaHnH5Vj3G" dev="true">
+      <nk-supply apikey="l2jCASkzMpuvg6K7uDuo" dev="true">
         <p> Mumbai </p>
       </nk-supply>
       <nk-supply apikey="AHN5MP6tExXVkvNlRaCR">
@@ -155,7 +155,7 @@
     </div>
   </div>
   <script>
-    const drop = document.getElementById('rinkeby');
+    const drop = document.getElementById('goerli');
     drop.addEventListener('walletConnected', event => {
       console.log({
         event

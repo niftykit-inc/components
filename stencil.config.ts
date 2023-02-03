@@ -19,6 +19,7 @@ export const config: Config = {
         'process.env.NODE_DEBUG': null,
         'process.env.LINK_API_URL': null,
         'process.env.SDK_VERSION': null,
+        preventAssignment: true,
       }),
       rollupCommonjs({
         transformMixedEsModules: true,

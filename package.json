@@ -43,26 +43,26 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@coinbase/wallet-sdk": "^3.0.12",
-    "@material/button": "^13.0.0",
-    "@material/circular-progress": "^13.0.0",
-    "@material/ripple": "^13.0.0",
-    "@material/select": "^13.0.0",
-    "@stencil/core": "^2.13.0",
-    "@walletconnect/web3-provider": "^1.7.1",
+    "@coinbase/wallet-sdk": "^3.6.3",
+    "@material/button": "^14.0.0",
+    "@material/circular-progress": "^14.0.0",
+    "@material/ripple": "^14.0.0",
+    "@material/select": "^14.0.0",
+    "@stencil/core": "^3.0.0",
+    "@walletconnect/web3-provider": "^1.8.0",
     "dropkit.js": "^0.0.20",
-    "ethers": "^5.5.4"
+    "ethers": "^5.7.2"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
-    "@rollup/plugin-replace": "^3.1.0",
-    "@stencil/sass": "^1.5.2",
-    "@types/jest": "^27.0.3",
-    "@types/node": "^17.0.18",
-    "dotenv": "^16.0.0",
-    "jest": "^27.4.5",
-    "jest-cli": "^27.4.5",
-    "puppeteer": "^13.3.2",
+    "@rollup/plugin-replace": "^5.0.2",
+    "@stencil/sass": "^2.0.3",
+    "@types/jest": "27.0.3",
+    "@types/node": "^18.11.18",
+    "dotenv": "^16.0.3",
+    "jest": "27.0.3",
+    "jest-cli": "27.4.5",
+    "puppeteer": "^19.6.3",
     "rollup-plugin-node-polyfills": "^0.2.1"
   },
   "license": "MIT"
