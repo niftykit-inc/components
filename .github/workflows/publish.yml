@@ -33,12 +33,12 @@ jobs:
       - name: Setup .npmrc file to publish to npm
         uses: actions/setup-node@v1
         with:
-          node-version: '14.x'
+          node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
       - name: Install modules
-        run: npm install
+        run: yarn
       - name: Build
-        run: npm run build
+        run: yarn build
         env:
           INFURA_ID: ${{ secrets.INFURA_ID }}
       - name: Publish to npm
